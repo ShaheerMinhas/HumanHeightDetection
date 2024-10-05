@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Height Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        form {
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="file"]:hover {
+            border-color: #4CAF50;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .info {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+            border: 2px solid #4CAF50;
+            margin-top: 15px;
+        }
+        .height-text {
+            font-size: 18px;
+            color: #4CAF50;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Height Detection from Image</h1>
+    <p class="info">Please hold a grid of 2-inch blocks in your hand and upload the image for height detection.</p>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <input type="submit" value="Upload Image">
+    </form>
+
+    <div class="result">
+        {% if img_data %}
+            <img src="data:image/png;base64,{{ img_data }}" alt="Processed Image">
+            <div class="height-text">{{ height_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
